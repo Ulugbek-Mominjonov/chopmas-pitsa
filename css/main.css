@@ -72,7 +72,7 @@ img{
   margin-top: 0;
   margin-bottom: 15px;
   color: #222;
-  font-size: 19px;
+  font-size: 22px;
   font-weight: bold;
 }
 .bread-input{
@@ -113,4 +113,34 @@ img{
 .size-checkbox__input:checked ~ .size-checkbox__control{
   background-color: yellow;
   box-shadow: 0px 1px 6px 2px #9e9eb1;
+}
+
+/* inredients */
+.checkbox-wrapper {
+  display: flex;
+  flex-wrap: wrap;
+}
+.checkbox-group{
+  width: 50%;
+  align-self: flex-start;
+  margin-bottom: 8px;
+}
+.checkbox-group__input:checked ~ .checkbox-group__controller::before{
+  background-color: yellow;
+}
+
+.checkbox-group__controller {
+  display: inline-flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 20px;
+  color: #222;
+}
+.checkbox-group__controller::before{
+  content: "";
+  width:  22px;
+  height: 22px;
+  margin-right: 5px;
+  border: 1px solid #222;
+  background-color: #fff;
 }

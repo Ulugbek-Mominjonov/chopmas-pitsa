@@ -34,16 +34,62 @@ let pizzaOptions = {
       price: 50000,
       size: 40,
     }
+  ],
+  inredients: [
+    {
+      name: 'Pomidor',
+      price: 4000
+    },
+    {
+      name: 'Tuzlangan bodring',
+      price: 5000
+    },
+    {
+      name: 'Kurka go\'shti',
+      price: 10000
+    },
+    {
+      name: 'Qo\'ziqorin',
+      price: 6000
+    },
+    {
+      name: 'Zaytun',
+      price: 9000
+    },
+    {
+      name: 'Qazi',
+      price: 12000
+    }
+  ],
+  additional: [
+    {
+      name: 'Achchiq sous',
+      price: 2000
+    },
+    {
+      name: 'Sosiskali bort',
+      price: 7000
+    },
+    {
+      name: 'Rayhon',
+      price: 2000
+    }
   ]
 }
 
 let selectedOptions = {};
 
+// Dom Elements
 let elBreadTypes = document.querySelector('.bread-input');
 let elPizzaSizes = document.querySelector('.js-pizza-sizes');
+let elPizzaIngredients = document.querySelector('.js-pizza-ingredients');
+let elPizzaAdditional = document.querySelector('.js-pizza-additional');
 
+// Templates
 let breadTypeOptionTemplate = document.querySelector('.pizza-type-bread').content;
 let pizzaSizeTemplate = document.querySelector('.pizza-type-size').content;
+let pizzaIngredientTemplate = document.querySelector('.pizza-type-inredient').content;
+let pizzaAdditionalTemplate = document.querySelector('.pizza-type-additional').content;
 
 // Create bread type Option function
 function createBreadOption(item) {
@@ -109,30 +155,66 @@ function showPizzaSizes() {
   elPizzaSizes.appendChild(sizeFragment);
 }
 
+// Create pizza inredient function
+function createPizzaIngredient(item) {
+  let cloneElementIngredient = pizzaIngredientTemplate.cloneNode(true);
+  let elInredientInput = cloneElementIngredient.querySelector('.ingredient-input');
+  let elControler = cloneElementIngredient.querySelector('.ingredient-controller');
+
+  elInredientInput.value = item.name;
+  elControler.textContent = item.name;
+
+  return cloneElementIngredient;
+}
+
+// show Pizza Ingredient function
+function showIngredient() {
+  let ingredientFragment = document.createDocumentFragment();
+  pizzaOptions.inredients
+    .slice()
+    .sort((a, b) => {
+      return a.name > b.name ? 1
+      : b.name > a.name ? -1
+      : 0
+    })
+    .forEach( item => {
+      ingredientFragment.appendChild(createPizzaIngredient(item));
+    })
+
+  elPizzaIngredients.appendChild(ingredientFragment);
+}
+
+// Create pizza additional function
+function createPizzaAdditional(item) {
+  let cloneElementAdditional = pizzaAdditionalTemplate.cloneNode(true);
+  let elAdditionalInput = cloneElementAdditional.querySelector('.additional-input');
+  let elControler = cloneElementAdditional.querySelector('.additional-controller');
+
+  elAdditionalInput.value = item.name;
+  elControler.textContent = item.name;
+
+  return cloneElementAdditional;
+}
+
+// show Pizza Ingredient function
+function showAdditional() {
+  let additionalFragment = document.createDocumentFragment();
+  pizzaOptions.additional
+    .slice()
+    .sort((a, b) => {
+      return a.name > b.name ? 1
+      : b.name > a.name ? -1
+      : 0
+    })
+    .forEach( item => {
+      additionalFragment.appendChild(createPizzaAdditional(item));
+    })
+
+  elPizzaAdditional.appendChild(additionalFragment);
+}
 
 
 showBreadOption()
 showPizzaSizes()
-// Nonlar:
-// - yupqa - 10 000 so'm
-// - qalin - 10 000 so'm
-// - buxanka - 7 000 so'm
-
-// Kattaligi:
-// - kichik - 25 cm - 25 000 so'm
-// - o'rta - 30 cm - 30 000 so'm
-// - katta - 35 cm - 45 000 so'm
-// - oilaviy - 40 cm - 50 000 so'm
-
-// Ustiga solinadiganlar:
-// - pomidor - 4 000 so'm
-// - tuzlangan bodring - 5 000 so'm
-// - kurka go'shti - 10 000 so'm
-// - qo'ziqorin - 6 000 so'm
-// - zaytun - 9 000 so'm
-// - qazi - 12 000 so'm
-
-// Qo'shimchalar:
-// - achchiq sous - 2 000 so'm
-// - sosiskali bort - 7 000 so'm
-// - rayhon - 2 000 so'm
+showIngredient()
+showAdditional()
