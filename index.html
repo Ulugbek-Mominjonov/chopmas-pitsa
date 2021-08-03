@@ -41,29 +41,33 @@
 
       <section class="pizza-form__result">
         <output class="result">
-          <div class="result-bread">
+          <div class="result-wrapper result-bread">
             <p class="result__title result-bread__heading">Non turi: <span class="result-bread__show"></span></p>
           </div>
 
-          <div class="result-size">
+          <div class="result-wrapper result-size">
             <p class="result__title result-size__heading">Kattaligi: <span class="result-size__show"></span></p>
           </div>
 
-          <div class="result-ingredient">
+          <div class="result-wrapper result-ingredient">
             <p class="result__title result-ingredient__heading">
+              Ustidagi narsalar:
               <ul class="result-list ingredient-list">
-                <li class="result-list__item"></li>
+
               </ul>
             </p>
           </div>
 
-          <div class="result-additional">
+          <div class="result-wrapper result-additional">
             <p class="result__title result-additional__heading">
+              Qo'shimchalar:
               <ul class="result-list additional-list">
 
               </ul>
           </p>
           </div>
+
+          <p class="result__title">Pitsaning narxi: <span class="all-price"></span></p>
         </output>
       </section>
     </form>
@@ -80,23 +84,19 @@
     </label>
   </template>
 
-  <template class="pizza-type-inredient">
-    <div class="checkbox-group ingredient-group">
-      <label  class="checkbox-group__label pizza-ingredient">
-        <input type="checkbox" class="checkbox__input ingredient-input visually-hidden" name="pizza-ingredient" value="">
-        <span class="checkbox-group__controller ingredient-controller"></span>
+  <template class="pizza-type-checkbox">
+    <div class="checkbox-group">
+      <label  class="checkbox-group__label">
+        <input type="checkbox" class="checkbox-group__input visually-hidden" name="pizza-ingredient" value="">
+        <span class="checkbox-group__controller"></span>
       </label>
     </div>
   </template>
 
-  <template class="pizza-type-additional">
-    <div class="checkbox-group additional-group">
-      <label  class="pizza-additional checkbox-group__label">
-        <input type="checkbox" class="checkbox-group__input additional-input visually-hidden" name="pizza-additional" value="">
-        <span class="checkbox-group__controller additional-controller"></span>
-      </label>
-    </div>
+  <template>
+    <li class="result-list__item"></li>
   </template>
+
 <script src="js/main.js"></script>
 </body>
 </html>

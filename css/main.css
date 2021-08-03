@@ -43,7 +43,7 @@ img{
   display: block;
 }
 .conatiner{
-  max-width: 900px;
+  max-width: 1000px;
   width: 100%;
   margin-left: auto;
   margin-right: auto;
@@ -58,7 +58,7 @@ img{
 }
 
 .pizza-form__options {
-  width: 70%;
+  width: 65%;
   height: 500px;
   padding: 30px;
   background-color: #F2F2F2;
@@ -143,4 +143,27 @@ img{
   margin-right: 5px;
   border: 1px solid #222;
   background-color: #fff;
+}
+
+/* result  */
+.pizza-form__result {
+  width: 35%;
+  height: 500px;
+  padding: 30px 20px;
+  background-color: #F2F2F2;
+  overflow-y: scroll;
+}
+.result-wrapper{
+  margin-bottom: 20px;
+}
+.result__title {
+  margin: 0;
+  font-size: 20px;
+  color: #222;
+}
+.result__title span{
+  color: #d62121;
+}
+.result-list__item{
+  color: #d62121;
 }
