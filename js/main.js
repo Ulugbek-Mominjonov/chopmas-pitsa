@@ -89,6 +89,8 @@ let elPizzaAdditional = document.querySelector('.js-pizza-additional');
 let breadTypeOptionTemplate = document.querySelector('.pizza-type-bread').content;
 let pizzaSizeTemplate = document.querySelector('.pizza-type-size').content;
 let pizzaCheckTemplate = document.querySelector('.pizza-type-checkbox').content;
+let elResultTemplate = document.querySelector('.result-template').content;
+
 
 // Create bread type Option function
 function createBreadOption(item) {
@@ -109,7 +111,7 @@ function showBreadOption() {
       : b.name > a.name ? -1
       : 0
     })
-    .forEach( item => {
+    .forEach( (item, index) => {
       optionFragment.appendChild(createBreadOption(item));
     })
 
@@ -155,11 +157,12 @@ function showPizzaSizes() {
 }
 
 // Create pizza Checkbox function
-function createPizzaCheckbox(item) {
+function createPizzaCheckbox(item, className) {
   let cloneElement = pizzaCheckTemplate.cloneNode(true);
   let elInput = cloneElement.querySelector('.checkbox-group__input');
   let elControler = cloneElement.querySelector('.checkbox-group__controller');
 
+  elInput.classList.add(className);
   elInput.value = item.name;
   elControler.textContent = item.name;
 
@@ -167,7 +170,7 @@ function createPizzaCheckbox(item) {
 }
 
 // show Pizza checkbox function
-function showChecbox(item, el) {
+function showChecbox(item, el, className) {
   let Fragment = document.createDocumentFragment();
   item
     .slice()
@@ -177,7 +180,7 @@ function showChecbox(item, el) {
       : 0
     })
     .forEach( item => {
-      Fragment.appendChild(createPizzaCheckbox(item));
+      Fragment.appendChild(createPizzaCheckbox(item, className));
     })
 
   el.appendChild(Fragment);
@@ -185,8 +188,8 @@ function showChecbox(item, el) {
 
 showBreadOption()
 showPizzaSizes()
-showChecbox(pizzaOptions.inredients, elPizzaIngredients)
-showChecbox(pizzaOptions.additional, elPizzaAdditional)
+showChecbox(pizzaOptions.inredients, elPizzaIngredients, 'js-ingredient-input')
+showChecbox(pizzaOptions.additional, elPizzaAdditional, 'js-additional-input')
 
 let allPrice = [];
 // Saving to selected bread type
@@ -217,9 +220,81 @@ sizeInputs.forEach(sizeInput => {
   })
 })
 
+// Saving to selected ingredients and additionals
+let ingredientList = document.querySelector('.ingredient-list');
+let additionalList = document.querySelector('.additional-list');
+let elIngredientInputs = document.querySelectorAll('.js-ingredient-input');
+let elAdditionalInputs = document.querySelectorAll('.js-additional-input');
+selectedOptions.inredients = [];
+selectedOptions.additional = [];
+
+elIngredientInputs.forEach(item => {
+  item.addEventListener('change', (evt) => {
+    let target = evt.target;
+    if(target.checked){
+      // add ingredient from selectedOptions.inredients
+      let ingredient = pizzaOptions.inredients.find(item => item.name == target.value);
+      selectedOptions.inredients.push(ingredient);
+    } else{
+      // remove ingredient from selectedOptions.inredients
+      let index = selectedOptions.inredients.findIndex(item => item.name == target.value);
+      selectedOptions.inredients.splice(index, 1);
+    }
+
+    // show ingredients
+    showCheckbox(selectedOptions.inredients, ingredientList);
+    allPrice[2] = selectedOptions.inredients.reduce((sum, item) => sum + item.price, 0);
+    countPrice(allPrice);
+  })
+})
+
+elAdditionalInputs.forEach(item => {
+  item.addEventListener('change', (evt) => {
+    let target = evt.target;
+    if(target.checked){
+      // add additional from selectedOptions.additional
+      let additional = pizzaOptions.additional.find(item => item.name == target.value);
+      selectedOptions.additional.push(additional);
+    } else{
+      // remove additional from selectedOptions.additional
+      let index = selectedOptions.additional.findIndex(item => item.name == target.value);
+      selectedOptions.additional.splice(index, 1);
+    }
+
+    // show ingredients
+    showCheckbox(selectedOptions.additional, additionalList);
+
+    // calculate
+    allPrice[3] = selectedOptions.additional.reduce((sum, item) => sum + item.price, 0);
+    countPrice(allPrice);
+  })
+})
+
+
+// showing selected ingredients and additionals
+function showCheckbox(array, el) {
+  let fragment = document.createDocumentFragment();
+  array
+    .slice()
+    .sort((a, b) => {
+      return a.name > b.name ? 1
+      : b.name > a.name ? -1
+      : 0
+    })
+    .forEach(item => {
+    let cloneElement = elResultTemplate.cloneNode(true);
+    let listItem = cloneElement.querySelector('.result-list__item');
+    listItem.textContent = item.name;
+    fragment.appendChild(cloneElement);
+  })
+  el.innerHTML = '';
+  el.appendChild(fragment);
+}
+
+// calculate all price of pizza
 function countPrice(array) {
   selectedOptions.price = array.reduce((sum, item) => {
     return sum + item;
   },0);
-  document.querySelector('.all-price').textContent = selectedOptions.price;
+  document.querySelector('.all-price').textContent = selectedOptions.price + ' so\'m';
 }

@@ -1,17 +1,19 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>project name</title>
+  <title>Chopmas Pitsa</title>
   <link rel="stylesheet" href="css/normalize.min.css">
   <link rel="stylesheet" href="css/main.css">
 </head>
+
 <body>
   <div class="conatiner">
     <h1 class="heading">Pitsa buyurtma qilish</h1>
-    <form class="pizza-form" action="">
+    <form class="pizza-form" action="https://echo.htmlacademy.ru" method="POST">
       <section class="pizza-form__options">
         <!-- bread  type for pizza  -->
         <div class="pizza-form__group">
@@ -41,34 +43,29 @@
 
       <section class="pizza-form__result">
         <output class="result">
-          <div class="result-wrapper result-bread">
-            <p class="result__title result-bread__heading">Non turi: <span class="result-bread__show"></span></p>
-          </div>
+          <p class="result__title result-bread__heading">Non turi: <span class="result-bread__show"></span></p>
 
-          <div class="result-wrapper result-size">
-            <p class="result__title result-size__heading">Kattaligi: <span class="result-size__show"></span></p>
-          </div>
+          <p class="result__title result-size__heading">Kattaligi: <span class="result-size__show"></span></p>
 
-          <div class="result-wrapper result-ingredient">
-            <p class="result__title result-ingredient__heading">
-              Ustidagi narsalar:
-              <ul class="result-list ingredient-list">
+          <p class="result__title result-ingredient__heading">
+            Ustidagi narsalar:
+            <ul class="result-list ingredient-list">
 
-              </ul>
-            </p>
-          </div>
-
-          <div class="result-wrapper result-additional">
-            <p class="result__title result-additional__heading">
-              Qo'shimchalar:
-              <ul class="result-list additional-list">
-
-              </ul>
+            </ul>
           </p>
-          </div>
+
+
+          <p class="result__title result-additional__heading">
+            Qo'shimchalar:
+            <ul class="result-list additional-list">
+
+            </ul>
+          </p>
 
           <p class="result__title">Pitsaning narxi: <span class="all-price"></span></p>
         </output>
+
+        <button class="submit" type="submit">Buyurtma berish</button>
       </section>
     </form>
   </div>
@@ -79,24 +76,25 @@
 
   <template class="pizza-type-size">
     <label class="size-checkbox">
-      <input class="size-checkbox__input visually-hidden" type="radio" name="pitsa o'lchami" value="">
+      <input class="size-checkbox__input visually-hidden" type="radio" name="pitsa-size" value="">
       <span class="size-checkbox__control"><small></small></span>
     </label>
   </template>
 
   <template class="pizza-type-checkbox">
     <div class="checkbox-group">
-      <label  class="checkbox-group__label">
+      <label class="checkbox-group__label">
         <input type="checkbox" class="checkbox-group__input visually-hidden" name="pizza-ingredient" value="">
         <span class="checkbox-group__controller"></span>
       </label>
     </div>
   </template>
 
-  <template>
+  <template class="result-template">
     <li class="result-list__item"></li>
   </template>
 
-<script src="js/main.js"></script>
+  <script src="js/main.js"></script>
 </body>
+
 </html>

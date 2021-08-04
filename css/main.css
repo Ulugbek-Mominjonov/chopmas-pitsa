@@ -58,7 +58,7 @@ img{
 }
 
 .pizza-form__options {
-  width: 65%;
+  width: 63%;
   height: 500px;
   padding: 30px;
   background-color: #F2F2F2;
@@ -147,17 +147,15 @@ img{
 
 /* result  */
 .pizza-form__result {
-  width: 35%;
+  width: 37%;
   height: 500px;
   padding: 30px 20px;
   background-color: #F2F2F2;
   overflow-y: scroll;
 }
-.result-wrapper{
-  margin-bottom: 20px;
-}
 .result__title {
   margin: 0;
+  margin-bottom: 20px;
   font-size: 20px;
   color: #222;
 }
@@ -166,4 +164,17 @@ img{
 }
 .result-list__item{
   color: #d62121;
+}
+.submit{
+  display: block;
+  margin: 0 auto;
+  margin-top: 30px;
+  padding: 10px 14px;
+  border: 3px solid transparent;
+  background-color: #F7CD75;
+  transition: .3s ease;
+}
+.submit:hover{
+  background-color: #fff5e0;
+  border-color: #F7CD75;
 }
